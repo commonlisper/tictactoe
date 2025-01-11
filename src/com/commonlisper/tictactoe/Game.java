@@ -47,7 +47,7 @@ public class Game {
 
     private boolean isWin(char playerField) {
         // check rows
-        int fillQuantity = 0;
+        int fillQuantity;
         for (int i = 0; i < FIELD_WIDTH; i++) {
             fillQuantity = 0;
             for (int j = 0; j < FIELD_HEIGHT; j++) {
@@ -80,11 +80,12 @@ public class Game {
 
         // check additional diagonal
         diagQuantity = 0;
-        for (int i = Math.min(FIELD_WIDTH, FIELD_HEIGHT) - 1; i >= 0; i--) {
-            if (field[i][i] == playerField) {
-                diagQuantity++;
+        for (int i = 0; i < Math.min(FIELD_WIDTH, FIELD_HEIGHT); i++)
+            for (int j = Math.min(FIELD_WIDTH, FIELD_HEIGHT) - 1; j >= 0; j--) {
+                if (field[i][j] == playerField) {
+                    diagQuantity++;
+                }
             }
-        }
         if (diagQuantity == Math.min(FIELD_WIDTH, FIELD_HEIGHT)) return true;
 
         return false;
